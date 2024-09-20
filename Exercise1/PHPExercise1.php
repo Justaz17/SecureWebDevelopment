@@ -44,7 +44,57 @@ function stringManipulation($s1,$s2) {
 	}
 }
 
-if(isset($_GET["sent1"]) && isset($_GET["sent2"])){
+
+//generating random numbers array to full an array of size 100.
+    $randNumbers = [];
+        $size = 100;
+        $total = 0;
+$freqRange10to19 =0;
+    for($i =0; $i< 100; $i++)
+        $randNumbers[] = rand(0,49);
+$smallestNumber = $randNumbers[0];
+$largestNumber =$randNumbers[0];
+
+    for($i = 0; $i< count($randNumbers); $i++)
+        {
+
+            $currentNumber =$randNumbers[$i];
+
+            if($currentNumber < $smallestNumber)
+            {
+                $smallestNumber = $currentNumber;
+
+            }
+            if ($currentNumber > $largestNumber)
+            {
+
+                $largestNumber = $currentNumber;
+            }
+
+            if($currentNumber >= 10 && $currentNumber <= 19)
+            {
+                $freqRange10to19 ++;
+            }
+            $total += $currentNumber;
+        }
+
+    $average = $total/ $size;
+    echo "The Smallest Number is :".$smallestNumber."<br>";
+    echo "The Largest number is : ".$largestNumber."<br>";
+    echo "The total sum of the numbers is: ". $total."<br>";
+    echo "The average is : ". $average."<br>";
+    echo "The freq is: ". $freqRange10to19."<br>";
+
+    for($j =1; $j < count($randNumbers); $j++)
+    {
+        echo $randNumbers[$j]. " \n\n";
+        if($j%12 == 0)
+        {
+            echo "<br>";
+        }
+    }
+
+    if(isset($_GET["sent1"]) && isset($_GET["sent2"])){
 	$s1 = $_GET["sent1"];
 	$s2 = $_GET["sent2"];
 	stringManipulation($s1,$s2);
